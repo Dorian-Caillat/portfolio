@@ -1,5 +1,6 @@
 import React from "react";
 import { Spotlight } from "./ui/Spotlight";
+import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = () => {
   return (
@@ -28,6 +29,16 @@ const Hero = () => {
           <h2 className="uppercase tracking-widest text-center text-blue-100 max-w-80">
             Dynamic Web Mqgic with Next.js
           </h2>
+
+          <TextGenerateEffect 
+          className="text-center text-[40px] md:text-5xl lg:text-6xl"
+          words="Transforming Concepts into Seamless Experiences"
+          
+          />
+
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+            Bonjour, je suis un developpeur junior avec un titre pro equivalent bac+2.
+          </p>
         </div>
       </div>
 
