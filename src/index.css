@@ -1,18 +1,19 @@
+@import "tailwindcss";
 @import url('https://fonts.cdnfonts.com/css/general-sans');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  scroll-behavior: smooth;
-}
+/* ---------- Base global ---------- */
+* { scroll-behavior: smooth; }
 
 body {
   background: #010103;
   font-family: 'General Sans', sans-serif;
 }
 
+/* ---------- Thème (tokens Tailwind v4) ---------- */
 @theme {
   /* Fonts */
   --font-generalsans: "General Sans", sans-serif;
@@ -35,6 +36,30 @@ body {
   --background-image-terminal: url("/assets/terminal.png");
 }
 
+/* ---------- Utilités perso (compatibles @apply) ---------- */
+@utility text-gray_gradient {
+  background-image: linear-gradient(
+    to right,
+    #BEC1CF 60%,
+    #D5D8EA 60%,
+    #D5D8EA 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility arrow-gradient {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1) 10%,
+    rgba(255, 255, 255, 0.000025) 50%,
+    rgba(255, 255, 255, 0.000025) 50%,
+    rgba(255, 255, 255, 0.025) 100%
+  );
+}
+
+/* ---------- Utilities composées du projet ---------- */
 @layer utilities {
   .c-space {
     @apply sm:px-10 px-5;
@@ -61,12 +86,12 @@ body {
   }
 
   .text-gray_gradient {
-    @apply bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent;
+    @apply text-gray_gradient;
   }
 
   /* button component */
   .btn {
-    @apply flex gap-4 items-center justify-center cursor-pointer p-3 rounded-md bg-black-300  transition-all active:scale-95 text-white mx-auto;
+    @apply flex gap-4 items-center justify-center cursor-pointer p-3 rounded-md bg-black-300 transition-all active:scale-95 text-white mx-auto;
   }
 
   .btn-ping {
@@ -105,7 +130,7 @@ body {
   }
 
   .tech-logo {
-    @apply w-10 h-10 rounded-md p-2 bg-neutral-100 bg-opacity-10 backdrop-filter backdrop-blur-lg flex justify-center items-center;
+    @apply w-10 h-10 rounded-md p-2 bg-neutral-100/10 backdrop-blur-lg flex justify-center items-center;
   }
 
   /* clients section */
@@ -114,7 +139,7 @@ body {
   }
 
   .client-review {
-    @apply rounded-lg md:p-10 p-5 col-span-1 bg-black-300 bg-opacity-50;
+    @apply rounded-lg md:p-10 p-5 col-span-1 bg-black-300/50;
   }
 
   .client-content {
@@ -135,7 +160,7 @@ body {
   }
 
   .work-content_container {
-    @apply grid grid-cols-[auto_1fr] items-start gap-5  transition-all ease-in-out duration-500 cursor-pointer hover:bg-black-300 rounded-lg sm:px-5 px-2.5;
+    @apply grid grid-cols-[auto_1fr] items-start gap-5 transition-all ease-in-out duration-500 cursor-pointer hover:bg-black-300 rounded-lg sm:px-5 px-2.5;
   }
 
   .work-content_logo {
@@ -143,7 +168,7 @@ body {
   }
 
   .work-content_bar {
-    @apply flex-1 w-0.5 mt-4 h-full bg-black-300 group-hover:bg-black-500 group-last:hidden;
+    @apply flex-1 w-0.5 mt-4 h-full bg-black-300 group-hover:bg-black-500 last:hidden;
   }
 
   /* contact section */
@@ -156,11 +181,11 @@ body {
   }
 
   .field-input {
-    @apply w-full bg-black-300 px-5 py-2 min-h-14 rounded-lg placeholder:text-white-500 text-lg text-white-800 shadow-black-200 shadow-2xl focus:outline-none;
+    @apply w-full bg-black-300 px-5 py-2 min-h-14 rounded-lg placeholder:text-white-500 text-lg text-white-800 ring-1 ring-black-200 shadow-2xl focus:outline-none;
   }
 
   .field-btn {
-    @apply bg-black-500 px-5 py-2 min-h-12 rounded-lg shadow-black-200 shadow-2xl flex justify-center items-center text-lg text-white gap-3;
+    @apply bg-black-500 px-5 py-2 min-h-12 rounded-lg ring-1 ring-black-200 shadow-2xl flex justify-center items-center text-lg text-white gap-3;
   }
 
   .field-btn_arrow {
@@ -173,6 +198,7 @@ body {
   }
 }
 
+/* ---------- Animations / helpers non-Tailwind ---------- */
 .waving-hand {
   animation-name: wave-animation;
   animation-duration: 2.5s;
@@ -192,28 +218,12 @@ body {
 }
 
 @keyframes wave-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  15% {
-    transform: rotate(14deg);
-  }
-  30% {
-    transform: rotate(-8deg);
-  }
-  40% {
-    transform: rotate(14deg);
-  }
-  50% {
-    transform: rotate(-4deg);
-  }
-  60% {
-    transform: rotate(10deg);
-  }
-  70% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(14deg); }
+  30%  { transform: rotate(-8deg); }
+  40%  { transform: rotate(14deg); }
+  50%  { transform: rotate(-4deg); }
+  60%  { transform: rotate(10deg); }
+  70%  { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
