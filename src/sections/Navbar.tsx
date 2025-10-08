@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { navLinks } from "../constants/navIdex";
 
+// objet qui récupère les intitulés du menu et qui les map selon leur id dans une liste non ordonnée
+
 const NavItems = () => {
   return (
     <ul className="nav-ul">
@@ -14,7 +16,7 @@ const NavItems = () => {
   )
 }
 
-
+// composant de la barre de navigation qui sera géré par un menu burger ou affichera directement la navigation selon les medias queries
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
