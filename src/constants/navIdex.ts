@@ -246,16 +246,32 @@ export const myProjects = [
   },
 ];
 
+type Vec3 = [number, number, number];
+
+type Sizes = {
+  deskScale: number;
+  deskPosition: Vec3;
+  cubePosition: Vec3;
+  reactLogoPosition: Vec3;
+  ringPosition: Vec3;
+  targetPosition: Vec3;
+};
+
+const vec3 = (x: number, y: number, z: number): Vec3 => [x, y, z];
 
 
-export const calculateSizes = (isSmall: string, isMobile: string, isTablet: string) => {
+export const calculateSizes = (
+  isSmall: boolean,
+  isMobile: boolean,
+  isTablet: boolean
+): Sizes => {
   return {
     deskScale: isSmall ? 0.05 : isMobile ? 0.06 : 0.065,
-    deskPosition: isMobile ? [0.5, -4.5, 0] : [0.25, -5.5, 0],
-    cubePosition: isSmall ? [4, -5, 0] : isMobile ? [5, -5, 0] : isTablet ? [5, -5, 0] : [9, -5.5, 0],
-    reactLogoPosition: isSmall ? [3, 4, 0] : isMobile ? [5, 4, 0] : isTablet ? [5, 4, 0] : [12, 3, 0],
-    ringPosition: isSmall ? [-5, 7, 0] : isMobile ? [-10, 10, 0] : isTablet ? [-12, 10, 0] : [-24, 10, 0],
-    targetPosition: isSmall ? [-5, -10, -10] : isMobile ? [-9, -10, -10] : isTablet ? [-11, -7, -10] : [-13, -13, -10],
+    deskPosition: isMobile ? vec3(0.5, -4.5, 0) : vec3(0.25, -5.5, 0),
+    cubePosition: isSmall ? vec3(2.5, -7, 0) : isMobile ? vec3(5, -5, 0) : isTablet ? vec3(5, -5, 0) : vec3(9, -5.5, 0),
+    reactLogoPosition: isSmall ? vec3(3, 4, 0) : isMobile ? vec3(5, 4, 0) : isTablet ? vec3(5, 4, 0) : vec3(12, 3, 0),
+    ringPosition: isSmall ? vec3(-5, 7, 0) : isMobile ? vec3(-10, 10, 0) : isTablet ? vec3(-12, 10, 0) : vec3(-24, 10, 0),
+    targetPosition: isSmall ? vec3(-5, -15, -10) : isMobile ? vec3(-9, -10, -10) : isTablet ? vec3(-11, -7, -10) : vec3(-13, -13, -10),
   };
 };
 
